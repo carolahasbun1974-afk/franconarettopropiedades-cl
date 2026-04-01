@@ -14,7 +14,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-primary backdrop-blur-md border-b border-primary/80">
       <div className="container mx-auto flex items-center justify-between py-4">
         <a href="#inicio" className="flex items-center">
           <img src={logo} alt="Franco Naretto Propiedades Agrícolas" className="h-20" />
