@@ -26,7 +26,7 @@ const Navbar = () => {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                className="text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors"
               >
                 {l.label}
               </a>
