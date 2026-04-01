@@ -14,7 +14,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-primary backdrop-blur-md border-b border-primary/80">
       <div className="container mx-auto flex items-center justify-between py-4">
         <a href="#inicio" className="flex items-center">
           <img src={logo} alt="Franco Naretto Propiedades Agrícolas" className="h-20" />
@@ -26,7 +26,7 @@ const Navbar = () => {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                className="text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors"
               >
                 {l.label}
               </a>
@@ -37,7 +37,7 @@ const Navbar = () => {
         {/* Mobile toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-foreground"
+          className="md:hidden text-primary-foreground"
           aria-label="Toggle menu"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -46,14 +46,14 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-background border-b border-border">
+        <div className="md:hidden bg-primary border-b border-primary/80">
           <ul className="container mx-auto py-4 flex flex-col gap-4">
             {links.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                  className="text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 >
                   {l.label}
                 </a>
