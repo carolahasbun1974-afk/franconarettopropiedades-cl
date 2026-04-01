@@ -98,3 +98,7 @@
     background: var(--hero-overlay);
   }
 }
+
+section[id] {
+  scroll-margin-top: 6rem;
+}
