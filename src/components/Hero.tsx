@@ -23,7 +23,7 @@ const Hero = () => {
           <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 py-6">
             <a href="#propiedades">Ver Propiedades</a>
           </Button>
-          <Button size="lg" variant="outline" className="border-primary-foreground/50 text-primary-foreground hover:bg-primary-foreground/10 text-base px-8 py-6">
+          <Button size="lg" variant="outline" className="border-white text-white bg-white/10 hover:bg-white/20 text-base px-8 py-6">
             <a href="#contacto">Contáctanos</a>
           </Button>
         </div>
