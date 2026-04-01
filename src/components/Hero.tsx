@@ -13,7 +13,7 @@ const Hero = () => {
       />
       <div className="absolute inset-0 hero-overlay" />
       <div className="relative z-10 container mx-auto text-center px-4">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 animate-fade-in-up font-sans tracking-tight">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 animate-fade-in-up font-sans tracking-tight">
           Especialistas en Propiedades Agrícolas
         </h1>
         <p className="text-lg md:text-xl text-primary-foreground/85 max-w-2xl mx-auto mb-10 font-sans opacity-0 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
