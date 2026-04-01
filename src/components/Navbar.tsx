@@ -46,7 +46,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-background border-b border-border">
+        <div className="md:hidden bg-primary border-b border-primary/80">
           <ul className="container mx-auto py-4 flex flex-col gap-4">
             {links.map((l) => (
               <li key={l.href}>
