@@ -38,7 +38,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-primary-foreground/20 mt-12 pt-6 text-center text-xs text-primary-foreground/50 font-sans">
-          © 2026 CampoReal. Todos los derechos reservados.
+          © 2026 Franco Naretto Propiedades Agrícolas. Todos los derechos reservados.
         </div>
       </div>
     </footer>
