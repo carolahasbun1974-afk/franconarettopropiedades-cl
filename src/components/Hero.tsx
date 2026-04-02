@@ -17,7 +17,7 @@ const Hero = () => {
           Especialistas en Propiedades Agrícolas
         </h1>
         <p className="text-lg md:text-xl text-primary-foreground/85 max-w-2xl mx-auto mb-10 font-sans opacity-0 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-          Corredora especializada en propiedades agrícolas. Conectamos inversionistas con las mejores tierras productivas del país.
+          Conectamos inversionistas con las mejores tierras productivas del país.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
           <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 py-6">
