@@ -6,11 +6,11 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
-    { label: "Inicio", href: "#inicio" },
-    { label: "Propiedades", href: "#propiedades" },
-    { label: "Servicios", href: "#servicios" },
-    { label: "Nosotros", href: "#nosotros" },
-    { label: "Contacto", href: "#contacto" },
+    { label: "Inicio", href: "/#inicio" },
+    { label: "Propiedades", href: "/#propiedades" },
+    { label: "Servicios", href: "/#servicios" },
+    { label: "Nosotros", href: "/#nosotros" },
+    { label: "Contacto", href: "/#contacto" },
   ];
 
   return (
