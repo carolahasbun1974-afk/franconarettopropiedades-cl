@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
       {/* Logo area */}
-      <div className="flex justify-center py-6">
+      <div className="bg-primary flex justify-center py-6">
         <a href="/#inicio" className="inline-block bg-background rounded-sm px-6 py-4">
           <img src={logo} alt="Franco Naretto Propiedades Agrícolas" className="h-20" />
         </a>
