@@ -66,8 +66,9 @@ const Admin = () => {
   };
 
   const uploadImage = async (file: File): Promise<string | null> => {
+    if (!userId) return null;
     const ext = file.name.split(".").pop();
-    const path = `${crypto.randomUUID()}.${ext}`;
+    const path = `${userId}/${crypto.randomUUID()}.${ext}`;
     const { error } = await supabase.storage.from("property-images").upload(path, file);
     if (error) {
       toast({ title: "Error al subir imagen", description: error.message, variant: "destructive" });
