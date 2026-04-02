@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center justify-center">
+    <section id="inicio" className="relative min-h-screen flex items-center justify-center pt-40">
       <img
         src={heroImage}
         alt="Campos agrícolas al atardecer"
