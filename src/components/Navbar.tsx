@@ -6,17 +6,17 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
-    { label: "Inicio", href: "#inicio" },
-    { label: "Propiedades", href: "#propiedades" },
-    { label: "Servicios", href: "#servicios" },
-    { label: "Nosotros", href: "#nosotros" },
-    { label: "Contacto", href: "#contacto" },
+    { label: "Inicio", href: "/#inicio" },
+    { label: "Propiedades", href: "/#propiedades" },
+    { label: "Servicios", href: "/#servicios" },
+    { label: "Nosotros", href: "/#nosotros" },
+    { label: "Contacto", href: "/#contacto" },
   ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-primary backdrop-blur-md border-b border-primary/80">
       <div className="container mx-auto flex items-center justify-between py-4">
-        <a href="#inicio" className="flex items-center">
+        <a href="/#inicio" className="flex items-center">
           <img src={logo} alt="Franco Naretto Propiedades Agrícolas" className="h-20" />
         </a>
 
