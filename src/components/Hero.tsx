@@ -20,10 +20,10 @@ const Hero = () => {
           Conectamos inversionistas con las mejores tierras productivas, terrenos urbanos y parcelaciones del país.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-          <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 py-6">
+          <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 py-6">
             <a href="#propiedades">Ver Propiedades</a>
           </Button>
-          <Button size="lg" variant="outline" className="border-white text-white bg-white/10 hover:bg-white/20 text-base px-8 py-6">
+          <Button size="lg" variant="outline" asChild className="border-white text-white bg-white/10 hover:bg-white/20 text-base px-8 py-6">
             <a href="#contacto">Contáctanos</a>
           </Button>
         </div>
