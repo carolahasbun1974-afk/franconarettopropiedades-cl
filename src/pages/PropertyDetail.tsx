@@ -81,7 +81,7 @@ const PropertyDetail = () => {
 
           {property.description && (
             <div className="prose prose-neutral max-w-none">
-              <h2 className="text-xl font-semibold text-foreground mb-3">Descripción</h2>
+              <h2 className="text-xl font-semibold mb-3 text-primary">Descripción</h2>
               <p className="leading-relaxed whitespace-pre-line text-primary">{property.description}</p>
             </div>
           )}
