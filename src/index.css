@@ -43,7 +43,7 @@
     --sidebar-accent: 35 40% 88%;
     --sidebar-accent-foreground: 30 10% 15%;
     --sidebar-border: 35 20% 85%;
-    --sidebar-ring: 142 35% 28%;
+    --sidebar-ring: 128 52% 28%;
 
     --hero-overlay: linear-gradient(to bottom, hsla(30, 10%, 10%, 0.4), hsla(30, 10%, 10%, 0.7));
     --shadow-card: 0 4px 20px -4px hsla(30, 10%, 15%, 0.08);
