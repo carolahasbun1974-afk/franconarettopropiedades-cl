@@ -4,11 +4,11 @@ const About = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Sobre CampoReal
+            Sobre Nosotros
           </h2>
           <p className="text-muted-foreground font-sans leading-relaxed mb-6">
             Con más de 15 años de experiencia en el mercado de propiedades agrícolas, 
-            CampoReal se ha consolidado como la corredora líder en intermediación de tierras 
+            Franco Naretto Propiedades Agrícolas se ha consolidado como la corredora líder en intermediación de tierras 
             productivas. Nuestro equipo de profesionales conoce cada valle, cada tipo de suelo 
             y cada oportunidad que el campo tiene para ofrecer.
           </p>
