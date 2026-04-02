@@ -15,7 +15,7 @@
     --popover: 40 33% 97%;
     --popover-foreground: 30 10% 15%;
 
-    --primary: 128 52% 22%;
+    --primary: 112 32% 24%;
     --primary-foreground: 40 33% 97%;
 
     --secondary: 35 40% 88%;
@@ -100,5 +100,5 @@
 }
 
 section[id] {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: 10rem;
 }

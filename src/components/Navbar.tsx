@@ -9,35 +9,36 @@ const Navbar = () => {
     { label: "Inicio", href: "/#inicio" },
     { label: "Propiedades", href: "/#propiedades" },
     { label: "Servicios", href: "/#servicios" },
-    { label: "Nosotros", href: "/#nosotros" },
     { label: "Contacto", href: "/#contacto" },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-primary backdrop-blur-md border-b border-primary/80">
-      <div className="container mx-auto flex items-center justify-between py-4">
-        <a href="/#inicio" className="flex items-center">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-primary">
+      {/* Logo area */}
+      <div className="flex justify-center py-6">
+        <a href="/#inicio" className="inline-block bg-background rounded-sm px-6 py-4">
           <img src={logo} alt="Franco Naretto Propiedades Agrícolas" className="h-20" />
         </a>
+      </div>
 
-        {/* Desktop */}
-        <ul className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
-                className="text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+      {/* Desktop links */}
+      <div className="hidden md:flex justify-center gap-10 pb-4">
+        {links.map((l) => (
+          <a
+            key={l.href}
+            href={l.href}
+            className="text-sm font-semibold text-primary-foreground/85 hover:text-primary-foreground transition-colors tracking-wide"
+          >
+            {l.label}
+          </a>
+        ))}
+      </div>
 
-        {/* Mobile toggle */}
+      {/* Mobile toggle */}
+      <div className="md:hidden flex justify-center pb-3">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-primary-foreground"
+          className="text-primary-foreground"
           aria-label="Toggle menu"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -46,14 +47,14 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-primary border-b border-primary/80">
-          <ul className="container mx-auto py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-primary pb-4">
+          <ul className="flex flex-col items-center gap-4">
             {links.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                  className="text-sm font-semibold text-primary-foreground/85 hover:text-primary-foreground transition-colors tracking-wide"
                 >
                   {l.label}
                 </a>
