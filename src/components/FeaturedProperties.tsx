@@ -1,36 +1,61 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 import PropertyCard from "./PropertyCard";
 import vineyardImg from "@/assets/property-vineyard.jpg";
 import wheatImg from "@/assets/property-wheat.jpg";
 import orchardImg from "@/assets/property-orchard.jpg";
+import type { Database } from "@/integrations/supabase/types";
 
-const properties = [
+type Property = Database["public"]["Tables"]["properties"]["Row"];
+
+const fallbackProperties = [
   {
+    id: "fallback-1",
     image: vineyardImg,
     title: "Viñedo Premium Valle Central",
     location: "Valle del Maule",
     hectares: 120,
-    type: "Viñedo",
+    property_type: "Viñedo",
     price: "UF 85.000",
   },
   {
+    id: "fallback-2",
     image: wheatImg,
     title: "Campo de Cereales Los Andes",
     location: "Región del Biobío",
     hectares: 350,
-    type: "Cultivo",
+    property_type: "Cultivo",
     price: "UF 45.000",
   },
   {
+    id: "fallback-3",
     image: orchardImg,
     title: "Frutales del Sur",
     location: "Región de la Araucanía",
     hectares: 80,
-    type: "Frutícola",
+    property_type: "Frutícola",
     price: "UF 62.000",
   },
 ];
 
 const FeaturedProperties = () => {
+  const [dbProperties, setDbProperties] = useState<Property[]>([]);
+
+  useEffect(() => {
+    const fetchProperties = async () => {
+      const { data } = await supabase
+        .from("properties")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(6);
+      if (data) setDbProperties(data);
+    };
+    fetchProperties();
+  }, []);
+
+  const hasDbProperties = dbProperties.length > 0;
+
   return (
     <section id="propiedades" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -43,9 +68,30 @@ const FeaturedProperties = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {properties.map((prop) => (
-            <PropertyCard key={prop.title} {...prop} />
-          ))}
+          {hasDbProperties
+            ? dbProperties.map((prop) => (
+                <Link key={prop.id} to={`/propiedad/${prop.id}`}>
+                  <PropertyCard
+                    image={prop.image_url || vineyardImg}
+                    title={prop.title}
+                    location={prop.location}
+                    hectares={prop.hectares}
+                    type={prop.property_type}
+                    price={prop.price}
+                  />
+                </Link>
+              ))
+            : fallbackProperties.map((prop) => (
+                <PropertyCard
+                  key={prop.id}
+                  image={prop.image}
+                  title={prop.title}
+                  location={prop.location}
+                  hectares={prop.hectares}
+                  type={prop.property_type}
+                  price={prop.price}
+                />
+              ))}
         </div>
       </div>
     </section>
