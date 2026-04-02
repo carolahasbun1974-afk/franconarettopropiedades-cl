@@ -3,25 +3,32 @@ import { useParams, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PropertyImageGallery from "@/components/PropertyImageGallery";
 import { MapPin, Maximize, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Database } from "@/integrations/supabase/types";
 
 type Property = Database["public"]["Tables"]["properties"]["Row"];
+type PropertyImage = Database["public"]["Tables"]["property_images"]["Row"];
 
 const PropertyDetail = () => {
   const { id } = useParams<{ id: string }>();
   const [property, setProperty] = useState<Property | null>(null);
+  const [images, setImages] = useState<PropertyImage[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProperty = async () => {
+    const fetchData = async () => {
       if (!id) return;
-      const { data } = await supabase.from("properties").select("*").eq("id", id).single();
-      setProperty(data);
+      const [propRes, imgRes] = await Promise.all([
+        supabase.from("properties").select("*").eq("id", id).single(),
+        supabase.from("property_images").select("*").eq("property_id", id).order("position"),
+      ]);
+      setProperty(propRes.data);
+      setImages(imgRes.data || []);
       setLoading(false);
     };
-    fetchProperty();
+    fetchData();
   }, [id]);
 
   if (loading) {
@@ -51,15 +58,7 @@ const PropertyDetail = () => {
           <ArrowLeft size={16} /> Volver a propiedades
         </Link>
 
-        {property.image_url && (
-          <div className="rounded-lg overflow-hidden mb-8 aspect-video">
-            <img
-              src={property.image_url}
-              alt={property.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        )}
+        <PropertyImageGallery images={images} fallbackUrl={property.image_url} />
 
         <div className="space-y-6">
           <div>
