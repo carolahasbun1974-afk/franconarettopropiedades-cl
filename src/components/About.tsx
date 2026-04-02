@@ -27,8 +27,8 @@ const About = () => {
               <p className="text-sm text-muted-foreground font-sans mt-1">Años de experiencia</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-primary">50K+</p>
-              <p className="text-sm text-muted-foreground font-sans mt-1">Presencia desde la Reg</p>
+              <p className="text-3xl font-bold text-primary">9 Regiones</p>
+              <p className="text-sm text-muted-foreground font-sans mt-1">Presencia desde la Región de Valparaíso hasta la Región de Los Lagos.</p>
             </div>
           </div>
         </div>
