@@ -16,19 +16,23 @@ const PropertyImageGallery = ({ images, fallbackUrl }: PropertyImageGalleryProps
   if (sorted.length === 0 && !fallbackUrl) return null;
   if (sorted.length === 0 && fallbackUrl) {
     return (
-      <div className="rounded-lg overflow-hidden mb-8 aspect-video">
-        <img src={fallbackUrl} alt="Propiedad" className="w-full h-full object-cover" />
+      <div className="mb-8 rounded-lg bg-muted p-2 md:p-3 flex items-center justify-center min-h-[18rem]">
+        <img
+          src={fallbackUrl}
+          alt="Propiedad"
+          className="max-w-full max-h-[75vh] w-auto h-auto object-contain rounded-md"
+        />
       </div>
     );
   }
 
   return (
     <div className="mb-8 space-y-3">
-      <div className="relative rounded-lg overflow-hidden bg-muted flex items-start justify-center" style={{ maxHeight: '70vh' }}>
+      <div className="relative rounded-lg bg-muted p-2 md:p-3 flex items-center justify-center min-h-[18rem]">
         <img
           src={sorted[current].image_url}
           alt={`Foto ${current + 1}`}
-          className="w-full h-auto max-h-[70vh] object-contain object-top"
+          className="max-w-full max-h-[75vh] w-auto h-auto object-contain rounded-md"
         />
         {sorted.length > 1 && (
           <>
@@ -70,11 +74,15 @@ const PropertyImageGallery = ({ images, fallbackUrl }: PropertyImageGalleryProps
               key={img.id}
               onClick={() => setCurrent(i)}
               className={cn(
-                "shrink-0 w-20 h-14 rounded overflow-hidden border-2 transition-colors",
+                "shrink-0 w-20 h-14 rounded overflow-hidden border-2 transition-colors bg-muted flex items-center justify-center",
                 i === current ? "border-primary" : "border-transparent"
               )}
             >
-              <img src={img.image_url} alt={`Miniatura ${i + 1}`} className="w-full h-full object-cover" />
+              <img
+                src={img.image_url}
+                alt={`Miniatura ${i + 1}`}
+                className="w-full h-full object-contain"
+              />
             </button>
           ))}
         </div>
