@@ -53,7 +53,7 @@ const PropertyDetail = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="container mx-auto px-4 py-24 max-w-4xl">
+      <main className="container mx-auto px-4 pt-56 pb-24 max-w-4xl">
         <Link to="/#propiedades" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6">
           <ArrowLeft size={16} /> Volver a propiedades
         </Link>
