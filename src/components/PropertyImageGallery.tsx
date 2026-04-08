@@ -14,13 +14,14 @@ const PropertyImageGallery = ({ images, fallbackUrl }: PropertyImageGalleryProps
   const sorted = [...images].sort((a, b) => a.position - b.position);
 
   if (sorted.length === 0 && !fallbackUrl) return null;
+
   if (sorted.length === 0 && fallbackUrl) {
     return (
-      <div className="mb-8 rounded-lg bg-muted p-2 md:p-3 flex items-center justify-center min-h-[18rem]">
+      <div className="mb-8 rounded-lg bg-muted p-2 md:p-3">
         <img
           src={fallbackUrl}
           alt="Propiedad"
-          className="max-w-full max-h-[75vh] w-auto h-auto object-contain rounded-md"
+          className="block w-full h-auto rounded-md"
         />
       </div>
     );
@@ -28,11 +29,11 @@ const PropertyImageGallery = ({ images, fallbackUrl }: PropertyImageGalleryProps
 
   return (
     <div className="mb-8 space-y-3">
-      <div className="relative rounded-lg bg-muted p-2 md:p-3 flex items-center justify-center min-h-[18rem]">
+      <div className="relative rounded-lg bg-muted p-2 md:p-3">
         <img
           src={sorted[current].image_url}
           alt={`Foto ${current + 1}`}
-          className="max-w-full max-h-[75vh] w-auto h-auto object-contain rounded-md"
+          className="block w-full h-auto rounded-md"
         />
         {sorted.length > 1 && (
           <>
@@ -74,14 +75,14 @@ const PropertyImageGallery = ({ images, fallbackUrl }: PropertyImageGalleryProps
               key={img.id}
               onClick={() => setCurrent(i)}
               className={cn(
-                "shrink-0 w-20 h-14 rounded overflow-hidden border-2 transition-colors bg-muted flex items-center justify-center",
+                "shrink-0 w-20 h-14 rounded border-2 transition-colors bg-muted p-1 flex items-center justify-center",
                 i === current ? "border-primary" : "border-transparent"
               )}
             >
               <img
                 src={img.image_url}
                 alt={`Miniatura ${i + 1}`}
-                className="w-full h-full object-contain"
+                className="max-w-full max-h-full w-auto h-auto object-contain"
               />
             </button>
           ))}
