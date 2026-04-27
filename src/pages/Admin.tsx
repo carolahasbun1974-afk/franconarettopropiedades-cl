@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Pencil, Trash2, Plus, LogOut, X } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { PROPERTY_CATEGORIES } from "@/lib/propertyCategories";
 import type { Database } from "@/integrations/supabase/types";
 
 type Property = Database["public"]["Tables"]["properties"]["Row"];
@@ -31,7 +33,7 @@ const Admin = () => {
     price: "",
     hectares: "",
     location: "",
-    property_type: "Agrícola",
+    property_type: "Fundos y parcelas agrícolas",
   });
 
   useEffect(() => {
@@ -177,7 +179,7 @@ const Admin = () => {
     setImageFiles([]);
     setExistingImages([]);
     setImagesToDelete([]);
-    setForm({ title: "", description: "", price: "", hectares: "", location: "", property_type: "Agrícola" });
+    setForm({ title: "", description: "", price: "", hectares: "", location: "", property_type: "Fundos y parcelas agrícolas" });
   };
 
   const handleLogout = async () => {
@@ -233,7 +235,16 @@ const Admin = () => {
               </div>
               <div className="space-y-2">
                 <Label>Tipo de Propiedad</Label>
-                <Input value={form.property_type} onChange={(e) => setForm({ ...form, property_type: e.target.value })} required />
+                <Select value={form.property_type} onValueChange={(v) => setForm({ ...form, property_type: v })}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecciona una categoría" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {PROPERTY_CATEGORIES.map((cat) => (
+                      <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div className="space-y-2">
                 <Label>Agregar Imágenes</Label>
