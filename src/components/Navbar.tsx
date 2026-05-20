@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Instagram } from "lucide-react";
 import logo from "@/assets/logo.jpeg";
 import { PROPERTY_CATEGORIES } from "@/lib/propertyCategories";
 
