@@ -27,6 +27,16 @@ const Footer = () => {
               <li className="flex items-center gap-2">
                 <MapPin size={16} /> Av. Libertador 1250, Santiago
               </li>
+              <li>
+                <a
+                  href="https://instagram.com/franconaretto.propiedades"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 hover:text-primary-foreground transition-colors"
+                >
+                  <Instagram size={16} /> @franconaretto.propiedades
+                </a>
+              </li>
             </ul>
           </div>
           <div>
