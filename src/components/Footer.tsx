@@ -22,7 +22,7 @@ const Footer = () => {
                 <Phone size={16} /> +56 9 98859247
               </li>
               <li className="flex items-center gap-2">
-                <Mail size={16} /> contacto@franconarettopropiedades..cl
+                <Mail size={16} /> contacto@franconarettopropiedades.cl
               </li>
               <li className="flex items-center gap-2">
                 <MapPin size={16} /> Rengo, VI Región
