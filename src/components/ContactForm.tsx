@@ -32,7 +32,7 @@ const ContactForm = () => {
             Contáctanos
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto font-sans">
-            ¿Interesado en alguna propiedad o quieres vender tu campo? Déjanos tus datos y te contactaremos a la brevedad.
+            ¿Interesado en alguna propiedad o quieres vender tu campo? janos tus datos y te contactaremos a la brevedad.
           </p>
         </div>
         <div className="max-w-xl mx-auto">
