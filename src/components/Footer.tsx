@@ -22,8 +22,8 @@ const Footer = () => {
                 <Phone size={16} /> +56 9 98859247
               </li>
               <li className="flex items-center gap-2">
-                <Mail size={16} />
-                <span>contacto@franconarettop</span>
+                <Mail size={16} className="flex-shrink-0" />
+                <span className="break-all">contacto@franconarettopropiedades.cl</span>
               </li>
               <li className="flex items-center gap-2">
                 <MapPin size={16} /> Rengo, VI Región
@@ -43,7 +43,7 @@ const Footer = () => {
           <div>
             <h4 className="font-serif text-lg font-semibold mb-4">¿Tienes un campo para vender?</h4>
             <p className="text-primary-foreground/75 font-sans text-sm mb-4">
-              Déjanos tus datos y te contactaremos a la brevedad.
+              janos tus datos y te contactaremos a la brevedad.
             </p>
             <Button variant="secondary" className="font-sans">
               Publicar mi propiedad
