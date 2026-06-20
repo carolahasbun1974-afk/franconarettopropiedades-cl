@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, User, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -14,14 +15,35 @@ const ContactForm = () => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      toast({ title: "Mensaje enviado", description: "Nos pondremos en contacto contigo pronto." });
+    try {
+      const { error } = await supabase.functions.invoke("send-transactional-email", {
+        body: {
+          templateName: "contact-notification",
+          idempotencyKey: `contact-${Date.now()}-${form.email}`,
+          templateData: {
+            name: form.name,
+            email: form.email,
+            phone: form.phone,
+            message: form.message,
+          },
+        },
+      });
+      if (error) throw error;
+      toast({ title: "Mensaje enviado", description: "Nos pondremos en contacto contigo a la brevedad." });
       setForm({ name: "", email: "", phone: "", message: "" });
+    } catch (err) {
+      console.error(err);
+      toast({
+        title: "Error al enviar",
+        description: "Intenta nuevamente o escríbenos directamente a contacto@franconarettopropiedades.cl",
+        variant: "destructive",
+      });
+    } finally {
       setLoading(false);
-    }, 800);
+    }
   };
 
   return (
