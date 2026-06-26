@@ -59,6 +59,8 @@ const SellProperty = () => {
         description: "Te contactaremos a la brevedad para coordinar la publicación.",
       });
       setForm(initial);
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
       console.error(err);
       toast({
