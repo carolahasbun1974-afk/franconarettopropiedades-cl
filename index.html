@@ -24,6 +24,16 @@
 
   <body>
     <div id="root"></div>
+    <script>
+      // Restaura la ruta original tras el fallback de 404.html en GitHub Pages
+      (function () {
+        var redirect = sessionStorage.getItem('spa-redirect');
+        if (redirect && redirect !== '/') {
+          sessionStorage.removeItem('spa-redirect');
+          history.replaceState(null, '', redirect);
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
