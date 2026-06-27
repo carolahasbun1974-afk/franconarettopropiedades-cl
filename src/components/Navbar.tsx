@@ -11,7 +11,7 @@ const Navbar = () => {
   const links = [
     { label: "Inicio", href: "/#inicio" },
     { label: "Propiedades", href: "/#propiedades", hasDropdown: true },
-    { label: "Servicios", href: "/#servicios" },
+    { label: "Servicio", href: "/#servicios" },
     { label: "Nosotros", href: "/#nosotros" },
     { label: "Contacto", href: "/#contacto" },
   ];
