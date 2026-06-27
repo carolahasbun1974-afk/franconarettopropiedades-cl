@@ -1,116 +1,100 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, User, Send } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { createClient } from "@supabase/supabase-js";
 
-const ContactForm = () => {
-  const { toast } = useToast();
-  const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+// Conexión directa con las llaves públicas autorizadas por Lovable
+const supabaseUrl = "https://supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVxbGFrZGFkZGp4eWttdmhndnZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwOTQwODYsImV4cCI6MjA5MDY3MDA4Nn0.SjSK5axESoOMf4sf4WZ9ymsaxY7JxlBFh00D5rWHR8c";
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+export default function ContactForm() {
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setStatus("loading");
+
     try {
-      const { error } = await supabase.functions.invoke("send-transactional-email", {
-        body: {
-          templateName: "contact-notification",
-          idempotencyKey: `contact-${Date.now()}-${form.email}`,
-          templateData: {
-            name: form.name,
-            email: form.email,
-            phone: form.phone,
-            message: form.message,
+      const { error } = await supabase
+        .from("contacts")
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
           },
-        },
-      });
+        ]);
+
       if (error) throw error;
-      toast({ title: "Mensaje enviado", description: "Nos pondremos en contacto contigo a la brevedad." });
-      setForm({ name: "", email: "", phone: "", message: "" });
+      setStatus("success");
+      setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (err) {
       console.error(err);
-      toast({
-        title: "Error al enviar",
-        description: "Intenta nuevamente o escríbenos directamente a contacto@franconarettopropiedades.cl",
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
+      setStatus("error");
     }
   };
 
   return (
-    <section id="contacto" className="py-20 bg-muted">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Contáctanos
-          </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto font-sans">
-            ¿Interesado en alguna propiedad o quieres vender tu campo? Déjanos tus datos y te contactaremos a la brevedad.
-          </p>
-        </div>
-        <div className="max-w-xl mx-auto">
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="relative">
-              <User className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
-              <Input
-                name="name"
-                placeholder="Nombre completo"
-                value={form.name}
-                onChange={handleChange}
-                required
-                className="pl-10 bg-background"
-              />
-            </div>
-            <div className="relative">
-              <Mail className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
-              <Input
-                name="email"
-                type="email"
-                placeholder="Correo electrónico"
-                value={form.email}
-                onChange={handleChange}
-                required
-                className="pl-10 bg-background"
-              />
-            </div>
-            <div className="relative">
-              <Phone className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
-              <Input
-                name="phone"
-                type="tel"
-                placeholder="Teléfono"
-                value={form.phone}
-                onChange={handleChange}
-                className="pl-10 bg-background"
-              />
-            </div>
-            <Textarea
-              name="message"
-              placeholder="Cuéntanos qué buscas o qué propiedad deseas vender..."
-              value={form.message}
-              onChange={handleChange}
-              required
-              rows={5}
-              className="bg-background"
-            />
-            <Button type="submit" size="lg" className="w-full" disabled={loading}>
-              <Send className="mr-2 h-5 w-5" />
-              {loading ? "Enviando..." : "Enviar mensaje"}
-            </Button>
-          </form>
-        </div>
+    <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto p-6 bg-white rounded-lg shadow">
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Nombre</label>
+        <input
+          type="text"
+          required
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm h-10 border"
+        />
       </div>
-    </section>
-  );
-};
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+        <input
+          type="email"
+          required
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm h-10 border"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Teléfono</label>
+        <input
+          type="tel"
+          required
+          value={formData.phone}
+          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm h-10 border"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Mensaje</label>
+        <textarea
+          required
+          rows={4}
+          value={formData.message}
+          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm border"
+        />
+      </div>
+      <button
+        type="submit"
+        disabled={status === "loading"}
+        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+      >
+        {status === "loading" ? "Enviando..." : "Enviar Mensaje"}
+      </button>
 
-export default ContactForm;
+      {status === "success" && (
+        <div className="mt-4 p-2 bg-green-100 text-green-700 rounded text-center font-medium">
+          ¡Mensaje enviado con éxito!
+        </div>
+      )}
+      {status === "error" && (
+        <div className="mt-4 p-2 bg-red-100 text-red-700 rounded text-center font-medium">
+          Error al enviar. Intenta nuevamente.
+        </div>
+      )}
+    </form>
+  );
+}
